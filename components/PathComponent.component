@@ -1,39 +1,43 @@
 <apex:component id="PathComponent" controller="PathComponentController">
-    <!--<apex:stylesheet value="{!URLFOR($Resource.sldc,'./styles/salesforce-lightning-design-system.css')}"/>-->
+    <apex:stylesheet value="{!URLFOR($Resource.sldc,'./styles/salesforce-lightning-design-system.css')}"/>
     <apex:slds/>
 
         <apex:attribute name="oppAttr" description="Attribute for opportunity" type="Opportunity" required="true" assignTo="{!currentOpportunity}"/>
 
     <div class="slds-scope">
 
-        <!-- MASTHEAD -->
-        <p class="slds-text-heading_medium slds-m-around--medium">
-            Current Stage:
-            {!oppAttr.StageName}
-        </p>
-        <!-- / MASTHEAD -->
-
         <div class="myapp">
 
-            <div>
+            <div class="slds-container--center">
 
 
                 <apex:repeat value="{!passedStages}" var="passedStage">
-                    <span class="slds-m-horizontal--small slds-m-vertical--large slds-badge slds-theme_success"><apex:outputText value="{!passedStage}"/></span>
+                    <div class="slds-x-small-show--inline-block slds-m-vertical--medium">
+                        <span class="slds-badge slds-theme_success ">
+                            <svg class="slds-icon slds-icon-text-warning slds-icon_x-small" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#chevrondown')}"/>
+                            </svg>
+                            <apex:outputText value="{!passedStage}"/>
+                        </span>
+                    </div>
                 </apex:repeat>
 
 
 
-                <span class="slds-m-horizontal--small slds-m-vertical--large slds-badge slds-theme--info">
-                    <apex:outputText value="{!currentStageName}"/>
-                </span>
+                <div class="slds-x-small-show--inline-block slds-m-vertical--medium">
+                    <span class="slds-badge slds-theme--warning">
+                        <apex:outputText value="{!oppAttr.StageName}"/>
+                    </span>
+                </div>
+
 
                 <apex:repeat value="{!futureStages}" var="futureStage">
-                    <span class="slds-m-horizontal--small slds-m-vertical--large slds-badge slds-theme_error"><apex:outputText value="{!futureStage}"/></span>
+                    <div class="slds-x-small-show--inline-block slds-m-vertical--medium">
+                        <span class="slds-badge slds-theme_shade">
+                            <apex:outputText value="{!futureStage}"/>
+                        </span>
+                    </div>
                 </apex:repeat>
-
-
-
 
             </div>
 
