@@ -1,0 +1,43 @@
+<apex:component id="PathComponent" controller="PathComponentController">
+    <!--<apex:stylesheet value="{!URLFOR($Resource.sldc,'./styles/salesforce-lightning-design-system.css')}"/>-->
+    <apex:slds/>
+
+        <apex:attribute name="oppAttr" description="Attribute for opportunity" type="Opportunity" required="true" assignTo="{!currentOpportunity}"/>
+
+    <div class="slds-scope">
+
+        <!-- MASTHEAD -->
+        <p class="slds-text-heading_medium slds-m-around--medium">
+            Current Stage:
+            {!oppAttr.StageName}
+        </p>
+        <!-- / MASTHEAD -->
+
+        <div class="myapp">
+
+            <div>
+
+
+                <apex:repeat value="{!passedStages}" var="passedStage">
+                    <span class="slds-m-horizontal--small slds-m-vertical--large slds-badge slds-theme_success"><apex:outputText value="{!passedStage}"/></span>
+                </apex:repeat>
+
+
+
+                <span class="slds-m-horizontal--small slds-m-vertical--large slds-badge slds-theme--info">
+                    <apex:outputText value="{!currentStageName}"/>
+                </span>
+
+                <apex:repeat value="{!futureStages}" var="futureStage">
+                    <span class="slds-m-horizontal--small slds-m-vertical--large slds-badge slds-theme_error"><apex:outputText value="{!futureStage}"/></span>
+                </apex:repeat>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+</apex:component>

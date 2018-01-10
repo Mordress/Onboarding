@@ -1,0 +1,7 @@
+<apex:page id="AmazingOpportunityView" standardController="Opportunity" tabStyle="Opportunity" standardStylesheets="false" docType="html-5.0">
+
+    <h1>Test vf page</h1>
+
+    <c:PathComponent oppAttr="{!opportunity}"/>
+
+</apex:page>
