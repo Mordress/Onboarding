@@ -15,7 +15,9 @@ public with sharing class PathComponentController {
         allStages = new List<String>();
         for (OpportunityStage stage : availableStages) {
             allStages.add(stage.ApiName);
+
         }
+
     }
 
     /* Create index of current stage in list of all stages and passed stages list */
@@ -29,6 +31,9 @@ public with sharing class PathComponentController {
                 break;
             }
         }
+        if (currentOpportunity.StageName.equalsIgnoreCase('Closed Lost')) {
+            passedStages.remove(passedStages.size() - 1);
+        }
     }
 
     /* Create future stages list */
@@ -37,6 +42,15 @@ public with sharing class PathComponentController {
         for (Integer i = 0; i <= indexOfCurrentStage; i++) {
             futureStages.remove(0);
         }
+        /*Merge close WON and close LOST*/
+        if (futureStages.size() >= 2) {
+            futureStages.remove(futureStages.size() - 1);
+            futureStages.remove(futureStages.size() - 1);
+            futureStages.add('Closed');
+        } else {
+            futureStages.clear();
+        }
+
     }
 
     public void setCurrentOpportunity(Opportunity Opportunity) {
