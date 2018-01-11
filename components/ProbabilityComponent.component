@@ -1,0 +1,20 @@
+<apex:component id="ProbabilityComponent">
+    <apex:stylesheet value="{!URLFOR($Resource.sldc,'./styles/salesforce-lightning-design-system.css')}"/>
+    <apex:slds/>
+    <apex:attribute name="opp" description="Attribute for opportunity instance" type="Opportunity" required="true"/>
+
+    <div class="slds-scope">
+        <div class="myapp" style="overflow: hidden;">
+            <div class="slds-container--center" style="width: 100%;">
+                <p class="slds-align_absolute-center" style="float: left; width: 10%; height: 20px;">
+                    Probability:
+                </p>
+                <div class="slds-progress-bar slds-progress-bar_circular slds-progress-bar_large slds-m-top--xx-small" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{!opp.Probability}" role="progressbar" style="float: left; width: 90%; height: 16px;">
+                    <span class="slds-progress-bar__value slds-text-align_center" style="width: {!opp.Probability}%;">
+                            <apex:outputField value="{!opp.Probability}"/>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</apex:component>
