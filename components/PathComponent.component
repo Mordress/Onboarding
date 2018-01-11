@@ -75,20 +75,23 @@
                                         <span class="slds-assistive-text">Scroll right</span>
                                     </button>
                                 </div>
+
                             </div>
                         </div>
                     </div>
-
-                    <div class="slds-grid slds-path__action">
+                    <!-- Button 'mark as complete' -->
+                    <!--<div class="slds-grid slds-path__action">
                         <span class="slds-path__stage-name">Stage: Unqualified</span>
                         <button class="slds-button slds-button_brand slds-path__mark-complete">
                             <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#check')}" />
                             </svg>Mark Status as Complete</button>
-                    </div>
+                    </div>-->
+
                 </div>
             </div>
 
+            <!-- First version of path:) -->
             <!--<div class="slds-container&#45;&#45;center">
 
 
