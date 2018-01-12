@@ -19,7 +19,7 @@ public with sharing class PathComponentController {
 
     }
 
-    /* Create index of current stage in list of all stages and passed stages list */
+    /* Create index of current stage and passed stages list */
     private void initPassedStages() {
         passedStages = new List<String>();
         for (Integer i = 0; i < allStages.size() ; i++) {
@@ -41,7 +41,7 @@ public with sharing class PathComponentController {
         for (Integer i = 0; i <= indexOfCurrentStage; i++) {
             futureStages.remove(0);
         }
-        /*Merge close WON and close LOST*/
+        /*Merge 'close WON' and 'close LOST' stages into 'Close' */
         if (futureStages.size() >= 2) {
             futureStages.remove(futureStages.size() - 1);
             futureStages.remove(futureStages.size() - 1);
