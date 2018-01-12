@@ -7,6 +7,8 @@ public with sharing class PathComponentController {
     private List<String> passedStages;
     private List<String> futureStages;
 
+    public String clickedStage;
+
 
     public PathComponentController() {
         availableStages = [SELECT Id, ApiName FROM OpportunityStage ORDER BY SortOrder];
@@ -82,6 +84,19 @@ public with sharing class PathComponentController {
 
     public String getCurrentStageName() {
         return currentOpportunity.StageName;
+    }
+
+    public String getClickedStage() {
+        return clickedStage;
+    }
+
+    public void setClickedStage(String newStage) {
+        this.clickedStage = newStage;
+    }
+
+
+    public void nextStage() {
+
     }
 
 }
