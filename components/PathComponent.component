@@ -1,6 +1,6 @@
 <apex:component id="PathComponent" controller="PathComponentController">
     <apex:stylesheet value="{!URLFOR($Resource.sldc,'./styles/salesforce-lightning-design-system.css')}"/>
-    <apex:slds/>
+    <apex:slds />
 
     <apex:attribute name="oppAttr" description="Attribute for opportunity" type="Opportunity" required="true" assignTo="{!currentOpportunity}"/>
 

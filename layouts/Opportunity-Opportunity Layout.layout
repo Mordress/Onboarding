@@ -134,7 +134,7 @@
                 <field>Description</field>
             </layoutItems>
             <layoutItems>
-                <height>200</height>
+                <height>450</height>
                 <page>AmazingOpportunityView</page>
                 <showLabel>false</showLabel>
                 <showScrollbars>false</showScrollbars>
