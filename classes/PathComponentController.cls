@@ -6,7 +6,6 @@ public with sharing class PathComponentController {
     private List<String> allStages;
     private List<String> passedStages;
     private List<String> futureStages;
-
     public String clickedStage;
 
 
@@ -16,13 +15,12 @@ public with sharing class PathComponentController {
         allStages = new List<String>();
         for (OpportunityStage stage : availableStages) {
             allStages.add(stage.ApiName);
-
         }
 
     }
 
-    private void sendEmailToOwner() {
-        EmailManager.sendMail(UserInfo.getUserEmail(), currentOpportunity.Id + ' was closed.', currentOpportunity.Id + ' was closed!!');
+    private void sendEmailToUser() {
+        EmailManager.sendMail(UserInfo.getUserEmail(), 'Opportunity with ID ' + currentOpportunity.Id + ' was closed.', currentOpportunity.Id + ' was closed!!');
     }
 
     /* Create index of current stage and passed stages list */
@@ -105,7 +103,7 @@ public with sharing class PathComponentController {
             indexOfCurrentStage = allStages.size() - 2;
             currentOpportunity.StageName = allStages.get(allStages.size() - 2);
 
-            sendEmailToOwner();
+            sendEmailToUser();
 
         } else if (clickedStage != null && clickedStage.equalsIgnoreCase(allStages.get(indexOfCurrentStage + 1))) {
                 ++indexOfCurrentStage;
@@ -117,5 +115,4 @@ public with sharing class PathComponentController {
         pageRef.setRedirect(true);*/
         return null;
     }
-
 }
