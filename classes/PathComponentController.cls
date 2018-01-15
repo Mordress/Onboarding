@@ -22,7 +22,7 @@ public with sharing class PathComponentController {
     }
 
     private void sendEmailToOwner() {
-        //TODO email send logic here
+        EmailManager.sendMail(UserInfo.getUserEmail(), currentOpportunity.Id + ' was closed.', currentOpportunity.Id + ' was closed!!');
     }
 
     /* Create index of current stage and passed stages list */
