@@ -1,9 +1,10 @@
-<apex:component id="PathComponent" controller="PathComponentController">
+<apex:component id="PathComponent" controller="PathComponentController" allowDML="true">
     <apex:stylesheet value="{!URLFOR($Resource.sldc,'./styles/salesforce-lightning-design-system.css')}"/>
     <apex:slds />
 
     <apex:attribute name="oppAttr" description="Attribute for opportunity" type="Opportunity" required="true" assignTo="{!currentOpportunity}"/>
     <apex:outputText >You clicked - {!clickedStage}</apex:outputText>
+
     <div class="slds-scope">
         <div class="myapp">
             <div class="slds-path">
@@ -46,26 +47,21 @@
                                     </li>
 
                                     <!-- Future stages -->
+
                                         <apex:repeat value="{!futureStages}" var="futureStage">
                                             <li class="slds-path__item slds-is-incomplete" role="presentation">
-                                                <a aria-selected="false" class="slds-path__link" role="option" tabindex="-1">
-                                                    <span class="slds-path__stage">
-                                                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#check')}" />
-                                                        </svg>
-                                                    </span>
-                                                    <span class="slds-path__title">
-                                                        <apex:form style="margin: 0; padding: 0; border: 0;">
-                                                            <apex:commandLink value="{!futureStage}" action="{!nextStage}" styleClass="slds-align_absolute-center">
-                                                                <apex:param name="pressedStage" value="{!futureStage}" assignTo="{!clickedStage}"/>
-                                                            </apex:commandLink>
-                                                        </apex:form>
-                                                    </span>
-                                                </a>
+                                                <!--<a aria-selected="false" class="slds-path__link" role="option" tabindex="-1">-->
+                                                    <apex:form>
+                                                        <apex:commandLink value="{!futureStage}" action="{!nextStage}" styleClass="slds-path__link slds-path__title">
+                                                            <apex:param name="pressedStage" value="{!futureStage}" assignTo="{!clickedStage}"/>
+                                                        </apex:commandLink>
+                                                    </apex:form>
+                                                <!--</a>-->
                                             </li>
                                         </apex:repeat>
+
                                 </ul>
-                                <div class="slds-path__scroll-controls">
+                                <!--<div class="slds-path__scroll-controls">
                                     <button class="slds-button slds-button_icon slds-button_icon-border-filled" title="Scroll left" tabindex="-1">
                                         <svg class="slds-button__icon" aria-hidden="true">
                                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#left')}" />
@@ -78,7 +74,7 @@
                                         </svg>
                                         <span class="slds-assistive-text">Scroll right</span>
                                     </button>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>

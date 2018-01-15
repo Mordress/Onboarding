@@ -21,6 +21,10 @@ public with sharing class PathComponentController {
 
     }
 
+    private void sendEmailToOwner() {
+        //TODO email send logic here
+    }
+
     /* Create index of current stage and passed stages list */
     private void initPassedStages() {
         passedStages = new List<String>();
@@ -95,8 +99,23 @@ public with sharing class PathComponentController {
     }
 
 
-    public void nextStage() {
+    public PageReference nextStage() {
+        if (clickedStage.equalsIgnoreCase('Closed') && currentOpportunity.StageName.equalsIgnoreCase(allStages.get(allStages.size() - 3))) {
+            //TODO IF we need won or lose logic needs js window
+            indexOfCurrentStage = allStages.size() - 2;
+            currentOpportunity.StageName = allStages.get(allStages.size() - 2);
 
+            sendEmailToOwner();
+
+        } else if (clickedStage != null && clickedStage.equalsIgnoreCase(allStages.get(indexOfCurrentStage + 1))) {
+                ++indexOfCurrentStage;
+                currentOpportunity.StageName = allStages.get(indexOfCurrentStage);
+
+        }
+        update currentOpportunity;
+        /*PageReference pageRef = new PageReference('/' + ApexPages.currentPage().getParameters().get('id') );
+        pageRef.setRedirect(true);*/
+        return null;
     }
 
 }
