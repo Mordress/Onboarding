@@ -8,7 +8,6 @@ public with sharing class PathComponentController {
     private List<String> futureStages;
     public String clickedStage;
 
-
     public PathComponentController() {
         availableStages = [SELECT Id, ApiName FROM OpportunityStage ORDER BY SortOrder];
         /* Create list of strings for all stages */
@@ -26,7 +25,7 @@ public with sharing class PathComponentController {
     /* Create index of current stage and passed stages list */
     private void initPassedStages() {
         passedStages = new List<String>();
-        for (Integer i = 0; i < allStages.size() ; i++) {
+        for (Integer i = 0; i < allStages.size(); i++) {
             if (!allStages.get(i).equalsIgnoreCase(currentOpportunity.StageName)) {
                 passedStages.add(allStages.get(i));
             } else {
@@ -106,13 +105,14 @@ public with sharing class PathComponentController {
             sendEmailToUser();
 
         } else if (clickedStage != null && clickedStage.equalsIgnoreCase(allStages.get(indexOfCurrentStage + 1))) {
-                ++indexOfCurrentStage;
-                currentOpportunity.StageName = allStages.get(indexOfCurrentStage);
+            ++indexOfCurrentStage;
+            currentOpportunity.StageName = allStages.get(indexOfCurrentStage);
 
         }
         update currentOpportunity;
-        /*PageReference pageRef = new PageReference('/' + ApexPages.currentPage().getParameters().get('id') );
-        pageRef.setRedirect(true);*/
+        /*PageReference pageRef = new ApexPages.StandardController(currentOpportunity).view();
+        pageRef.setRedirect(true);
+        return pageRef;*/
         return null;
     }
 }
