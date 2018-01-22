@@ -1,10 +1,7 @@
 <apex:component id="AngularComponent" controller="AngularComponentController" allowDML="true">
 	<apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular.min.js')}"/>
-	<!--<apex:includeScript value="{! $Resource.angular }"/>-->
-	<!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
 
 	<apex:attribute name="currentOpp" description="Attribute for opportunity instance" type="Opportunity" required="true" assignTo="{!incomeOpportunity}"/>
-
 
 	<span>Deal name:</span>
 	<apex:outputText value="{!DealName}"/><br/>
@@ -13,6 +10,7 @@
 	<span>Status:</span>
 	<apex:outputText value="{!DealStatus}"/><br/>
 	<hr/>
+
 	<div ng-app="app" ng-controller="mainController">
 		<div>
 			<input value="text" ng-model="userInput"/>

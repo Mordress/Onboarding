@@ -1,7 +1,7 @@
 public with sharing class AngularComponentController {
 
 	public Opportunity incomeOpportunity {get; set;}
-	public static final String NONEXISTSDEAL = 'N/A';
+	public static final String NON_EXISTS_DEAL = 'N/A';
 	private Deal__c relatedDeal {get; set;}
 	private Opportunity currentOpportunity;
 
@@ -25,21 +25,21 @@ public with sharing class AngularComponentController {
 		if (init()) {
 			return relatedDeal.Name;
 		}
-		return NONEXISTSDEAL;
+		return NON_EXISTS_DEAL;
 	}
 
 	public String getDealDesc() {
 		if (init()) {
 			return relatedDeal.Description__c;
 		}
-		return NONEXISTSDEAL;
+		return NON_EXISTS_DEAL;
 	}
 
 	public String getDealStatus() {
 		if (init()) {
 			return relatedDeal.Approval_Status__c;
 		}
-		return NONEXISTSDEAL;
+		return NON_EXISTS_DEAL;
 	}
 
 
