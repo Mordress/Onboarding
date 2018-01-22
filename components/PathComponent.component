@@ -3,13 +3,9 @@
     <apex:slds />
 
     <apex:attribute name="oppAttr" description="Attribute for opportunity" type="Opportunity" required="true" assignTo="{!currentOpportunity}"/>
-    <apex:attribute name="SaveAction"
-                    description="The save action method from the page controller"
-                    type="ApexPages.Action" required="true"/>
-    <apex:attribute name="CancelAction"
-                    description="The cancel action method from the page controller"
-                    type="ApexPages.Action" required="true"/>
+	<hr/>
     <apex:outputText >You clicked - {!clickedStage}</apex:outputText>
+
 
     <div class="slds-scope">
         <div class="myapp">
