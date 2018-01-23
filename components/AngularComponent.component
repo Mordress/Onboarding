@@ -6,54 +6,64 @@
 	<apex:attribute name="currentOpp" description="Attribute for opportunity instance" type="Opportunity" required="true" assignTo="{!incomeOpportunity}"/>
 
 	<div ng-app="app" ng-controller="mainController">
-		<div class="slds-text-heading--large">
-			<h2>Related Deal:</h2>
+
+		<div id="dealDetails" ng-show="showDealDetails" class="ng-hide">
+
+			<div class="slds-text-heading--large">
+				<h2>Related Deal:</h2>
+			</div>
+
+			<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+				<thead>
+					<tr class="slds-text-title_caps">
+						<th scope="col">
+							<div class="slds-truncate" title="Deal name">Name</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Deal description">Description</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Deal Creation Date">Creation Date</div>
+						</th>
+						<th scope="col">
+							<div class="slds-truncate" title="Deal Status">Status</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td data-label="Deal name">
+							<div class="slds-truncate">{{dealName}}</div>
+						</td>
+						<td data-label="Deal description">
+							<div class="slds-truncate">{{dealDesc | limitTo: 130}}</div>
+						</td>
+						<td data-label="Deal Create Date">
+							<div class="slds-truncate">{{dealCreationDate}}</div>
+						</td>
+						<td data-label="Deal Status">
+							<div class="slds-truncate">{{dealStatus}}</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-
-		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
-			<thead>
-				<tr class="slds-text-title_caps">
-					<th scope="col">
-						<div class="slds-truncate" title="Deal name">Name</div>
-					</th>
-					<th scope="col">
-						<div class="slds-truncate" title="Deal description">Description</div>
-					</th>
-					<th scope="col">
-						<div class="slds-truncate" title="Deal Creation Date">Creation Date</div>
-					</th>
-					<th scope="col">
-						<div class="slds-truncate" title="Deal Status">Status</div>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td data-label="Deal name">
-						<div class="slds-truncate">{{dealName}}</div>
-					</td>
-					<td data-label="Deal description">
-						<div class="slds-truncate">{{dealDesc | limitTo: 100}}</div>
-					</td>
-					<td data-label="Deal Create Date">
-						<div class="slds-truncate">{{dealCreationDate}}</div>
-					</td>
-					<td data-label="Deal Status">
-						<div class="slds-truncate">{{dealStatus}}</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
 	</div>
-	<!--TODO Animate Status with angular animation-->
+	<!--TODO Animate DealStatus with angular animation-->
+	<!--<apex:includeScript value="{! $Resource.angularComponentJs }"/>-->
 	<script>
-		var angComp = angular.module("app", []);
-		angComp.controller("mainController", function($scope) {
-		    $scope.dealDesc = "{!DealDesc}";
-		    $scope.dealName = "{!DealName}";
-		    $scope.dealStatus = "{!DealStatus}";
-		    $scope.dealCreationDate = "{!DealCreateDate}";
+        var angComp = angular.module("app", []);
+        angComp.controller("mainController", function($scope) {
+            $scope.dealDesc = "{!DealDesc}";
+            $scope.dealName = "{!DealName}";
+            $scope.dealStatus = "{!DealStatus}";
+            $scope.dealCreationDate = "{!DealCreateDate}";
 
-  });
+            if ($scope.dealName === 'N/A') {
+                $scope.showDealDetails = false;
+            } else {
+                $scope.showDealDetails = true;
+            }
+        });
 	</script>
 </apex:component>

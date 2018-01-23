@@ -13,7 +13,9 @@ public with sharing class AngularComponentController {
 			if (currentOpportunity.IsWon) {
 				relatedDeal = [SELECT Id, Name, Description__c, Approval_Status__c, CreatedDate FROM Deal__c WHERE Opportunity__c =:incomeOpportunity.Id];
 				System.debug('Deal: ' + relatedDeal);
-			} else return false;
+			} else {
+                return false;
+            }
 		} catch (QueryException e) {
 			System.debug(e.getMessage()+ ' ' + e.getCause());
 			return false;
@@ -51,7 +53,4 @@ public with sharing class AngularComponentController {
 		}
 		return NON_EXISTS_DEAL;
 	}
-
-
-
 }
