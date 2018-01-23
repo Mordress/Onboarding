@@ -5,85 +5,55 @@
 
 	<apex:attribute name="currentOpp" description="Attribute for opportunity instance" type="Opportunity" required="true" assignTo="{!incomeOpportunity}"/>
 
-	<div class="slds-text-heading--large">
-		<h2>Related Deal:</h2>
-	</div>
-
-
-
-	<!--<span>Deal name:</span>
-	<apex:outputText value="{!DealName}"/><br/>
-	<span>Description:</span>
-	<apex:outputText value="{!DealDesc}"/><br/>
-	<span>Status:</span>
-	<apex:outputText value="{!DealStatus}"/><br/>
-	<span>Created date:</span>
-	<apex:outputText value="{!DealCreateDate}"/><br/>
-	<hr/>-->
-
-
-	<table class="slds-table slds-table_bordered slds-table_cell-buffer">
-		<thead>
-		<tr class="slds-text-title_caps">
-			<th scope="col">
-				<div class="slds-truncate" title="Deal name">Name</div>
-			</th>
-			<th scope="col">
-				<div class="slds-truncate" title="Deal description">Description</div>
-			</th>
-			<th scope="col">
-				<div class="slds-truncate" title="Deal Creation Date">Creation Date</div>
-			</th>
-			<th scope="col">
-				<div class="slds-truncate" title="Deal Status">Status</div>
-			</th>
-			<th scope="col">
-				<div class="slds-truncate" title="Deal Owner">Owner</div>
-			</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<td data-label="Deal name">
-				<div class="slds-truncate">{!DealName}</div>
-			</td>
-			<td data-label="Deal description">
-				<div class="slds-truncate">{!DealDesc}</div>
-			</td>
-			<td data-label="Deal Create Date">
-				<div class="slds-truncate">{!DealCreateDate}</div>
-			</td>
-			<td data-label="Deal Status">
-				<div class="slds-truncate">{!DealStatus}</div>
-			</td>
-			<td data-label="Deal Owner">
-				<div class="slds-truncate">NULL</div>
-			</td>
-		</tr>
-		</tbody>
-	</table>
-
-
-
-
-	<!--TODO creataing date and other dates with angular filtering-->
-
 	<div ng-app="app" ng-controller="mainController">
-		<!--<h2>{{ desc }}</h2>
-		<div class="slds-form-element">
-			<label class="slds-form-element__label" for="text-input-id-1">Description</label>
-			<div class="slds-form-element__control">
-				<input type="text" id="text-input-id-1" class="slds-input" ng-model="desc"/>
+		<div class="slds-text-heading--large">
+			<h2>Related Deal:</h2>
+		</div>
 
-			</div>
-		</div>-->
+		<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+			<thead>
+				<tr class="slds-text-title_caps">
+					<th scope="col">
+						<div class="slds-truncate" title="Deal name">Name</div>
+					</th>
+					<th scope="col">
+						<div class="slds-truncate" title="Deal description">Description</div>
+					</th>
+					<th scope="col">
+						<div class="slds-truncate" title="Deal Creation Date">Creation Date</div>
+					</th>
+					<th scope="col">
+						<div class="slds-truncate" title="Deal Status">Status</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td data-label="Deal name">
+						<div class="slds-truncate">{{dealName}}</div>
+					</td>
+					<td data-label="Deal description">
+						<div class="slds-truncate">{{dealDesc | limitTo: 100}}</div>
+					</td>
+					<td data-label="Deal Create Date">
+						<div class="slds-truncate">{{dealCreationDate}}</div>
+					</td>
+					<td data-label="Deal Status">
+						<div class="slds-truncate">{{dealStatus}}</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
+	<!--TODO Animate Status with angular animation-->
 	<script>
 		var angComp = angular.module("app", []);
 		angComp.controller("mainController", function($scope) {
-		    /*$scope.desc = "{!DealDesc}";*/
+		    $scope.dealDesc = "{!DealDesc}";
+		    $scope.dealName = "{!DealName}";
+		    $scope.dealStatus = "{!DealStatus}";
+		    $scope.dealCreationDate = "{!DealCreateDate}";
 
   });
-
 	</script>
 </apex:component>

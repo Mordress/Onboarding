@@ -44,7 +44,10 @@ public with sharing class AngularComponentController {
 
 	public String getDealCreateDate() {
 		if (init()) {
-			return relatedDeal.CreatedDate.format();
+			return Date.newInstance(relatedDeal.CreatedDate.year(),
+                                    relatedDeal.CreatedDate.month(),
+                                    relatedDeal.CreatedDate.day())
+                                    .format();
 		}
 		return NON_EXISTS_DEAL;
 	}
