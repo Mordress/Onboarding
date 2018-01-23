@@ -1,5 +1,5 @@
 <apex:page id="AmazingOpportunityView" standardController="Opportunity" tabStyle="Opportunity" standardStylesheets="false" docType="html-5.0">
 	<c:PathComponent oppAttr="{!Opportunity}"/>
 	<c:ProbabilityComponent opp="{!opportunity}"/>
-	<c:AngularComponent currentOpp ="{!Opportunity}"/>
+	<c:AngularComponent currentOpp="{!Opportunity}"/>
 </apex:page>

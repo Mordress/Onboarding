@@ -11,7 +11,7 @@ public with sharing class AngularComponentController {
 			/*System.debug('incomeOpportunity: ' + incomeOpportunity);*/
 			System.debug('Opportunity: ' + currentOpportunity);
 			if (currentOpportunity.IsWon) {
-				relatedDeal = [SELECT Id, Name, Description__c, Approval_Status__c FROM Deal__c WHERE Opportunity__c =:incomeOpportunity.Id];
+				relatedDeal = [SELECT Id, Name, Description__c, Approval_Status__c, CreatedDate FROM Deal__c WHERE Opportunity__c =:incomeOpportunity.Id];
 				System.debug('Deal: ' + relatedDeal);
 			} else return false;
 		} catch (QueryException e) {
@@ -41,5 +41,14 @@ public with sharing class AngularComponentController {
 		}
 		return NON_EXISTS_DEAL;
 	}
+
+	public String getDealCreateDate() {
+		if (init()) {
+			return relatedDeal.CreatedDate.format();
+		}
+		return NON_EXISTS_DEAL;
+	}
+
+
 
 }

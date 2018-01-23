@@ -54,7 +54,7 @@
                                         <apex:repeat value="{!futureStages}" var="futureStage">
                                             <li class="slds-path__item slds-is-incomplete" role="presentation">
                                                 <!--<a aria-selected="false" class="slds-path__link" role="option" tabindex="-1">-->
-                                                    <apex:form>
+                                                    <apex:form >
                                                         <apex:commandLink value="{!futureStage}" action="{!nextStage}" styleClass="slds-path__link slds-path__title">
                                                             <apex:param name="pressedStage" value="{!futureStage}" assignTo="{!clickedStage}"/>
                                                         </apex:commandLink>

@@ -1,26 +1,87 @@
 <apex:component id="AngularComponent" controller="AngularComponentController" allowDML="true">
 	<apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular.min.js')}"/>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.8/angular.min.js"></script>-->
+	<apex:slds/>
 
 	<apex:attribute name="currentOpp" description="Attribute for opportunity instance" type="Opportunity" required="true" assignTo="{!incomeOpportunity}"/>
 
-	<span>Deal name:</span>
+	<div class="slds-text-heading--large">
+		<h2>Related Deal:</h2>
+	</div>
+
+
+
+	<!--<span>Deal name:</span>
 	<apex:outputText value="{!DealName}"/><br/>
 	<span>Description:</span>
 	<apex:outputText value="{!DealDesc}"/><br/>
 	<span>Status:</span>
 	<apex:outputText value="{!DealStatus}"/><br/>
-	<hr/>
+	<span>Created date:</span>
+	<apex:outputText value="{!DealCreateDate}"/><br/>
+	<hr/>-->
+
+
+	<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+		<thead>
+		<tr class="slds-text-title_caps">
+			<th scope="col">
+				<div class="slds-truncate" title="Deal name">Name</div>
+			</th>
+			<th scope="col">
+				<div class="slds-truncate" title="Deal description">Description</div>
+			</th>
+			<th scope="col">
+				<div class="slds-truncate" title="Deal Creation Date">Creation Date</div>
+			</th>
+			<th scope="col">
+				<div class="slds-truncate" title="Deal Status">Status</div>
+			</th>
+			<th scope="col">
+				<div class="slds-truncate" title="Deal Owner">Owner</div>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td data-label="Deal name">
+				<div class="slds-truncate">{!DealName}</div>
+			</td>
+			<td data-label="Deal description">
+				<div class="slds-truncate">{!DealDesc}</div>
+			</td>
+			<td data-label="Deal Create Date">
+				<div class="slds-truncate">{!DealCreateDate}</div>
+			</td>
+			<td data-label="Deal Status">
+				<div class="slds-truncate">{!DealStatus}</div>
+			</td>
+			<td data-label="Deal Owner">
+				<div class="slds-truncate">NULL</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+
+
+
+	<!--TODO creataing date and other dates with angular filtering-->
 
 	<div ng-app="app" ng-controller="mainController">
-		<div>
-			<input value="text" ng-model="userInput"/>
-			<hr/>
-			<h2>Hello, {{userInput}}!</h2>
-		</div>
+		<!--<h2>{{ desc }}</h2>
+		<div class="slds-form-element">
+			<label class="slds-form-element__label" for="text-input-id-1">Description</label>
+			<div class="slds-form-element__control">
+				<input type="text" id="text-input-id-1" class="slds-input" ng-model="desc"/>
+
+			</div>
+		</div>-->
 	</div>
 	<script>
 		var angComp = angular.module("app", []);
 		angComp.controller("mainController", function($scope) {
+		    /*$scope.desc = "{!DealDesc}";*/
 
   });
 
