@@ -1,4 +1,4 @@
-.view-animate.ng-enter {
+/* .view-animate.ng-enter {
   transition:0.7s ease all;
   transform: translateY(30px);
   color: green;
@@ -19,3 +19,4 @@
     transform: translateY(30px);
     color: green;
 }
+*/

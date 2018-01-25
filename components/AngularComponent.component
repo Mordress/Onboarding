@@ -45,19 +45,14 @@
 							<div>{{dealCreationDate}}</div>
 						</td>
 						<td data-label="Deal Status">
-                            <div class="view-animate-container">
-							    <div ng-if="showStatus" class="view-animate">{{dealStatus}}</div>
-                            </div>
+							<div>{{dealStatus}}</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-                <button ng-click="showStatus=true" class="slds-button--brand">Show</button>
-                <button ng-click="showStatus=false" class="slds-button--destructive">Hide</button>
 		</div>
 	</div>
-	<!--TODO Animate DealStatus with angular animation-->
-	<!--<apex:includeScript value="{! $Resource.angularComponentJs }"/>-->
+	<!--TODO Remove animation and add material design-->
 
 	<script>
         var angComp = angular.module("app", ['ngAnimate']);
