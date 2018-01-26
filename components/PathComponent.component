@@ -4,9 +4,6 @@
 
     <apex:attribute name="oppAttr" description="Attribute for opportunity" type="Opportunity" required="true" assignTo="{!currentOpportunity}"/>
 	<hr/>
-    <apex:outputText >You clicked - {!clickedStage}</apex:outputText>
-
-
     <div class="slds-scope">
         <div class="myapp">
             <div class="slds-path">
@@ -49,35 +46,16 @@
                                     </li>
 
                                     <!-- Future stages -->
-
-
-                                        <apex:repeat value="{!futureStages}" var="futureStage">
-                                            <li class="slds-path__item slds-is-incomplete" role="presentation">
-                                                <!--<a aria-selected="false" class="slds-path__link" role="option" tabindex="-1">-->
-                                                    <apex:form >
-                                                        <apex:commandLink value="{!futureStage}" action="{!nextStage}" styleClass="slds-path__link slds-path__title">
-                                                            <apex:param name="pressedStage" value="{!futureStage}" assignTo="{!clickedStage}"/>
-                                                        </apex:commandLink>
-                                                    </apex:form>
-                                                <!--</a>-->
-                                            </li>
-                                        </apex:repeat>
-
+                                    <apex:repeat value="{!futureStages}" var="futureStage">
+                                        <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                            <apex:form >
+                                                <apex:commandLink value="{!futureStage}" action="{!nextStage}" styleClass="slds-path__link slds-path__title">
+                                                    <apex:param name="pressedStage" value="{!futureStage}" assignTo="{!clickedStage}"/>
+                                                </apex:commandLink>
+                                            </apex:form>
+                                        </li>
+                                    </apex:repeat>
                                 </ul>
-                                <!--<div class="slds-path__scroll-controls">
-                                    <button class="slds-button slds-button_icon slds-button_icon-border-filled" title="Scroll left" tabindex="-1">
-                                        <svg class="slds-button__icon" aria-hidden="true">
-                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#left')}" />
-                                        </svg>
-                                        <span class="slds-assistive-text">Scroll left</span>
-                                    </button>
-                                    <button class="slds-button slds-button_icon slds-button_icon-border-filled" title="Scroll right" tabindex="-1">
-                                        <svg class="slds-button__icon" aria-hidden="true">
-                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#right')}" />
-                                        </svg>
-                                        <span class="slds-assistive-text">Scroll right</span>
-                                    </button>
-                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -92,41 +70,6 @@
 
                 </div>
             </div>
-
-            <!-- First version of path:) -->
-            <!--<div class="slds-container&#45;&#45;center">
-
-
-                <apex:repeat value="{!passedStages}" var="passedStage">
-                    <div class="slds-x-small-show&#45;&#45;inline-block slds-m-vertical&#45;&#45;medium">
-                        <span class="slds-badge slds-theme_success ">
-                            <svg class="slds-icon slds-icon-text-warning slds-icon_x-small" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#check')}"/>
-                            </svg>
-                            <apex:outputText value="{!passedStage}"/>
-                        </span>
-                    </div>
-                </apex:repeat>
-
-
-
-                <div class="slds-x-small-show&#45;&#45;inline-block slds-m-vertical&#45;&#45;medium">
-                    <span class="slds-badge slds-theme&#45;&#45;warning">
-                        <apex:outputText value="{!oppAttr.StageName}"/>
-                    </span>
-                </div>
-
-
-                <apex:repeat value="{!futureStages}" var="futureStage">
-                    <div class="slds-x-small-show&#45;&#45;inline-block slds-m-vertical&#45;&#45;medium">
-                        <span class="slds-badge slds-theme_shade">
-                            <apex:outputText value="{!futureStage}"/>
-                        </span>
-                    </div>
-                </apex:repeat>
-
-            </div>-->
-
         </div>
     </div>
 

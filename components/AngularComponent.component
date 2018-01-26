@@ -1,20 +1,27 @@
 <apex:component id="AngularComponent" controller="AngularComponentController" allowDML="true">
 	<apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular.min.js')}"/>
 	<apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular-animate.min.js')}"/>
-	<apex:stylesheet value="{! $Resource.angularComponentCss }"/>
-	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.8/angular.min.js"></script>-->
-	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.8/angular-animate.js"></script>-->
-	<apex:slds/>
+	<apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular-aria.min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular-messages.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.sldc,'./styles/salesforce-lightning-design-system.css')}"/>
+    <apex:stylesheet value="{! $Resource.angularComponentCss }"/>
+    <apex:slds/>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
 
 	<apex:attribute name="currentOpp" description="Attribute for opportunity instance" type="Opportunity" required="true" assignTo="{!incomeOpportunity}"/>
 
-	<div ng-app="app" ng-controller="mainController">
+	<div ng-app="app" ng-controller="mainController" ng-cloak="true" layout="column">
 
 		<div id="dealDetails" ng-show="showDealDetails" class="ng-hide">
 
-			<div class="slds-text-heading--large">
-				<h2>Related Deal:</h2>
-			</div>
+
+
+			<md-toolbar class="md-primary">
+				<div class="md-toolbar-tools">
+					<h2 class="md-flex slds-text-heading--large">Related Deal:</h2>
+				</div>
+			</md-toolbar>
 
 			<table class="slds-table slds-table_bordered slds-table_cell-buffer">
 				<thead>
@@ -45,23 +52,58 @@
 							<div>{{dealCreationDate}}</div>
 						</td>
 						<td data-label="Deal Status">
-							<div>{{dealStatus}}</div>
+							<div ng-switch="statusColor">
+								<div ng-switch-when="Approved">
+									<!--TODO FOR APPROVED-->
+                                    <svg class="slds-icon slds-icon-text-default slds-icon_x-small" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                    </svg>
+                                    <span>{{dealStatus}}</span>
+								</div>
+								<div ng-switch-when="Rejected">
+									<!--TODO FOR Rejected-->
+                                    <svg class="slds-icon slds-icon-text-default slds-icon_x-small" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#close')}"/>
+                                    </svg>
+
+                                    <span>{{dealStatus}}</span>
+								</div>
+								<div ng-switch-when="Pending approval">
+									<!--Animation for 'pending approval' status-->
+                                    <div layout="row" layout-sm="column" layout-align="space-around">
+                                        <md-progress-circular md-mode="indeterminate" md-diameter="15px" class="md-hue-1">
+                                        </md-progress-circular>
+                                        <span>{{dealStatus}}</span>
+                                    </div>
+								</div>
+							</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<!--TODO Remove animation and add material design-->
-
+	<!--TODO ADD colors for status through JS-->
 	<script>
-        var angComp = angular.module("app", ['ngAnimate']);
+        var angComp = angular.module("app", ['ngAnimate', 'ngMaterial']);
         angComp.controller("mainController", function($scope) {
             $scope.dealDesc = "{!DealDesc}";
             $scope.dealName = "{!DealName}";
             $scope.dealStatus = "{!DealStatus}";
             $scope.dealCreationDate = "{!DealCreateDate}";
             $scope.showStatus = true;
+
+            switch ($scope.dealStatus) {
+                case "Pending approval":
+                    $scope.statusColor = "Pending approval";
+                    break;
+                case "Approved":
+                    $scope.statusColor = "Approved";
+                    break;
+                case "Rejected":
+                    $scope.statusColor = "Rejected";
+                    break;
+            }
 
             if ($scope.dealName === 'N/A') {
                 $scope.showDealDetails = false;
