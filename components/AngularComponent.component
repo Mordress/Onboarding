@@ -6,6 +6,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.sldc,'./styles/salesforce-lightning-design-system.css')}"/>
     <apex:stylesheet value="{! $Resource.angularComponentCss }"/>
     <apex:slds/>
+    <!--TODO move libs to static resources!-->
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.css"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
 
@@ -14,8 +15,6 @@
 	<div ng-app="app" ng-controller="mainController" ng-cloak="true" layout="column">
 
 		<div id="dealDetails" ng-show="showDealDetails" class="ng-hide">
-
-
 
 			<md-toolbar class="md-primary">
 				<div class="md-toolbar-tools">
@@ -54,18 +53,19 @@
 						<td data-label="Deal Status">
 							<div ng-switch="statusColor">
 								<div ng-switch-when="Approved">
-									<!--TODO FOR APPROVED-->
+									<!--Animation for Approved-->
                                     <svg class="slds-icon slds-icon-text-default slds-icon_x-small" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=
+                                        "{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#check')}"/>
                                     </svg>
                                     <span>{{dealStatus}}</span>
 								</div>
 								<div ng-switch-when="Rejected">
-									<!--TODO FOR Rejected-->
+									<!--Animation for Rejected-->
                                     <svg class="slds-icon slds-icon-text-default slds-icon_x-small" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#close')}"/>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=
+                                        "{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#close')}"/>
                                     </svg>
-
                                     <span>{{dealStatus}}</span>
 								</div>
 								<div ng-switch-when="Pending approval">
@@ -83,7 +83,6 @@
 			</table>
 		</div>
 	</div>
-	<!--TODO ADD colors for status through JS-->
 	<script>
         var angComp = angular.module("app", ['ngAnimate', 'ngMaterial']);
         angComp.controller("mainController", function($scope) {
