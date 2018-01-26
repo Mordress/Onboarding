@@ -1,89 +1,89 @@
 <apex:component id="AngularComponent" controller="AngularComponentController" allowDML="true">
-	<apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular.min.js')}"/>
-	<apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular-animate.min.js')}"/>
-	<apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular-aria.min.js')}"/>
-	<apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular-messages.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular-animate.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular-aria.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.angular,'./angular-1.6.8/angular-messages.min.js')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.sldc,'./styles/salesforce-lightning-design-system.css')}"/>
-    <apex:stylesheet value="{! $Resource.angularComponentCss }"/>
     <apex:slds/>
     <!--TODO move libs to static resources!-->
-	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.css"/>
-	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
 
-	<apex:attribute name="currentOpp" description="Attribute for opportunity instance" type="Opportunity" required="true" assignTo="{!incomeOpportunity}"/>
+    <apex:attribute name="currentOpp" description="Attribute for opportunity instance" type="Opportunity"
+                    required="true" assignTo="{!incomeOpportunity}"/>
 
-	<div ng-app="app" ng-controller="mainController" ng-cloak="true" layout="column">
+    <div ng-app="app" ng-controller="mainController" ng-cloak="true" layout="column">
 
-		<div id="dealDetails" ng-show="showDealDetails" class="ng-hide">
+        <div id="dealDetails" ng-show="showDealDetails" class="ng-hide">
 
-			<md-toolbar class="md-primary">
-				<div class="md-toolbar-tools">
-					<h2 class="md-flex slds-text-heading--large">Related Deal:</h2>
-				</div>
-			</md-toolbar>
+            <md-toolbar class="md-primary">
+                <div class="md-toolbar-tools">
+                    <h2 class="md-flex slds-text-heading--large">Related Deal:</h2>
+                </div>
+            </md-toolbar>
 
-			<table class="slds-table slds-table_bordered slds-table_cell-buffer">
-				<thead>
-					<tr class="slds-text-title_caps">
-						<th scope="col">
-							<div class="slds-truncate" title="Deal name">Name</div>
-						</th>
-						<th scope="col">
-							<div class="slds-truncate" title="Deal description">Description</div>
-						</th>
-						<th scope="col">
-							<div class="slds-truncate" title="Deal Creation Date">Creation Date</div>
-						</th>
-						<th scope="col">
-							<div class="slds-truncate" title="Deal Status">Status</div>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td data-label="Deal name">
-							<div>{{dealName}}</div>
-						</td>
-						<td data-label="Deal description">
-							<div class="slds-truncate" title="{{dealDesc}}">{{dealDesc | limitTo: 80}}</div>
-						</td>
-						<td data-label="Deal Create Date">
-							<div>{{dealCreationDate}}</div>
-						</td>
-						<td data-label="Deal Status">
-							<div ng-switch="statusColor">
-								<div ng-switch-when="Approved">
-									<!--Animation for Approved-->
-                                    <svg class="slds-icon slds-icon-text-default slds-icon_x-small" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=
-                                        "{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#check')}"/>
-                                    </svg>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">
+                        <div class="slds-truncate" title="Deal name">Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Deal description">Description</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Deal Creation Date">Creation Date</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Deal Status">Status</div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-label="Deal name">
+                        <div>{{dealName}}</div>
+                    </td>
+                    <td data-label="Deal description">
+                        <div class="slds-truncate" title="{{dealDesc}}">{{dealDesc | limitTo: 80}}</div>
+                    </td>
+                    <td data-label="Deal Create Date">
+                        <div>{{dealCreationDate}}</div>
+                    </td>
+                    <td data-label="Deal Status">
+                        <div ng-switch="statusColor">
+                            <div ng-switch-when="Approved">
+                                <!--Animation for Approved-->
+                                <svg class="slds-icon slds-icon-text-default slds-icon_x-small" aria-hidden="true">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=
+                                    "{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#check')}"/>
+                                </svg>
+                                <span>{{dealStatus}}</span>
+                            </div>
+                            <div ng-switch-when="Rejected">
+                                <!--Animation for Rejected-->
+                                <svg class="slds-icon slds-icon-text-default slds-icon_x-small" aria-hidden="true">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=
+                                    "{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#close')}"/>
+                                </svg>
+                                <span>{{dealStatus}}</span>
+                            </div>
+                            <div ng-switch-when="Pending approval">
+                                <!--Animation for 'pending approval' status-->
+                                <div layout="row" layout-sm="column" layout-align="space-around">
+                                    <md-progress-circular md-mode="indeterminate" md-diameter="15px" class="md-hue-1">
+                                    </md-progress-circular>
                                     <span>{{dealStatus}}</span>
-								</div>
-								<div ng-switch-when="Rejected">
-									<!--Animation for Rejected-->
-                                    <svg class="slds-icon slds-icon-text-default slds-icon_x-small" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=
-                                        "{!URLFOR($Resource.sldc, './icons/utility-sprite/svg/symbols.svg#close')}"/>
-                                    </svg>
-                                    <span>{{dealStatus}}</span>
-								</div>
-								<div ng-switch-when="Pending approval">
-									<!--Animation for 'pending approval' status-->
-                                    <div layout="row" layout-sm="column" layout-align="space-around">
-                                        <md-progress-circular md-mode="indeterminate" md-diameter="15px" class="md-hue-1">
-                                        </md-progress-circular>
-                                        <span>{{dealStatus}}</span>
-                                    </div>
-								</div>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<script>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
         var angComp = angular.module("app", ['ngAnimate', 'ngMaterial']);
         angComp.controller("mainController", function($scope) {
             $scope.dealDesc = "{!DealDesc}";
@@ -110,5 +110,5 @@
                 $scope.showDealDetails = true;
             }
         });
-	</script>
+    </script>
 </apex:component>
