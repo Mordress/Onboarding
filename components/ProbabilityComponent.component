@@ -15,11 +15,8 @@
                 <apex:includeScript value="{!$Resource.gaugeChartSettings}"/>
                 <script>
                     var target = document.getElementById('gauge-chart');
-                    var gauge = new Gauge(target).setOptions(getGaugeOpt());
-                    gauge.maxValue = 100;
-                    gauge.setMinValue(0);
-                    gauge.animationSpeed = 32; // set animation speed (32 is default value)
-                    gauge.set({!opp.Probability}); // set actual value
+                    var currentValue = {!opp.Probability};
+                    window.createGauge(target, currentValue);
                 </script>
             </div>
         </div>
